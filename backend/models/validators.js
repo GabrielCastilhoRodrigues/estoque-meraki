@@ -3,6 +3,7 @@ const { Product_type } = require('./product_type');
 const { Stock } = require('./stock');
 const { Purchase } = require('./purchase');
 const { ItemPurchase } = require('./itemPurchase');
+const { Person } = require('./person');
 
 /**
  * Confere se o Tipo de Produto informado realmente existe.
@@ -106,6 +107,16 @@ async function item_purchase_exist(id_item_purchase) {
     return itemPurchase;
 }
 
+async function person_exist(id_person) {
+    const person_exist = await Person.findOne({
+        where: {
+            id: id_person
+        }
+    });
+
+    return person_exist;
+}
+
 module.exports = {
     product_type_exist,
     product_exist,
@@ -113,5 +124,6 @@ module.exports = {
     stock_exist,
     stock_with_product_exist,
     purchase_exist,
-    item_purchase_exist
+    item_purchase_exist,
+    person_exist
 }

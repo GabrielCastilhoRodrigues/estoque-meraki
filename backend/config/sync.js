@@ -3,6 +3,7 @@ const { Product } = require('../models/product')
 const { Stock } = require('../models/stock')
 const { Purchase } = require('../models/purchase')
 const { ItemPurchase } = require('../models/itemPurchase')
+const { Person } = require('../models/person')
 
 const sync = function () {
     Product.belongsTo(Product_type, {
@@ -35,6 +36,7 @@ const sync = function () {
     Stock.sync();
     Purchase.sync();
     ItemPurchase.sync();
+    Person.sync();
 }
 
 sync();
