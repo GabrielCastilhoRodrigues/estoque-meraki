@@ -4,6 +4,7 @@ const { Stock } = require('../models/stock')
 const { Purchase } = require('../models/purchase')
 const { ItemPurchase } = require('../models/itemPurchase')
 const { Person } = require('../models/person')
+const { Sale } = require('../models/sale')
 
 const sync = function () {
     Product.belongsTo(Product_type, {
@@ -31,12 +32,18 @@ const sync = function () {
         allowNull: false
     });
 
+    Sale.belongsTo(Person, {
+        foreignKey: 'id_person',
+        allowNull: false
+    });
+
     Product_type.sync();
     Product.sync();
     Stock.sync();
     Purchase.sync();
     ItemPurchase.sync();
     Person.sync();
+    Sale.sync;
 }
 
 sync();

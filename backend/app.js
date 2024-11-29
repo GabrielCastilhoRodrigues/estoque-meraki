@@ -10,6 +10,7 @@ const stockRoutes = require('./routes/stockRoutes');
 const purchaseRoutes = require('./routes/purchaseRoutes');
 const itemPurchaseRoutes = require('./routes/itemPurchaseRoutes');
 const personRoutes = require('./routes/personRoutes');
+const saleRoutes = require('./routes/saleRoutes');
 
 app.use(express.json());
 
@@ -19,5 +20,6 @@ app.use('/stock', stockRoutes);
 app.use('/purchase', purchaseRoutes);
 app.use('/item-purchase', itemPurchaseRoutes);
 app.use('/person', personRoutes);
+app.use('/sale', saleRoutes)
 
 app.listen(process.env.PORT, () => {});
