@@ -5,6 +5,7 @@ const { Purchase } = require('../models/purchase')
 const { ItemPurchase } = require('../models/itemPurchase')
 const { Person } = require('../models/person')
 const { Sale } = require('../models/sale')
+const { Payment } = require('../models/payment')
 
 const sync = function () {
     Product.belongsTo(Product_type, {
@@ -37,6 +38,20 @@ const sync = function () {
         allowNull: false
     });
 
+    Payment.belongsTo(Person, {
+        foreignKey: 'id_person',
+        allowNull: false
+    });
+    Payment.belongsTo(Sale, {
+        foreignKey: 'id_sale',
+        allowNull: false
+    });
+    Sale.hasMany(Payment, {
+        foreignKey: 'id_sale',
+        constraints: true,
+        allowNull: false
+    });
+
     Product_type.sync();
     Product.sync();
     Stock.sync();
@@ -44,6 +59,7 @@ const sync = function () {
     ItemPurchase.sync();
     Person.sync();
     Sale.sync;
+    Payment.sync({force: true});
 }
 
 sync();

@@ -11,6 +11,7 @@ const purchaseRoutes = require('./routes/purchaseRoutes');
 const itemPurchaseRoutes = require('./routes/itemPurchaseRoutes');
 const personRoutes = require('./routes/personRoutes');
 const saleRoutes = require('./routes/saleRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 app.use(express.json());
 
@@ -20,6 +21,7 @@ app.use('/stock', stockRoutes);
 app.use('/purchase', purchaseRoutes);
 app.use('/item-purchase', itemPurchaseRoutes);
 app.use('/person', personRoutes);
-app.use('/sale', saleRoutes)
+app.use('/sale', saleRoutes);
+app.use('/payment', paymentRoutes)
 
 app.listen(process.env.PORT, () => {});

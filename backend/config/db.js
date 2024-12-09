@@ -4,6 +4,8 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
 //Realiza a conexão com a base de dados.
-const sequelize = new Sequelize(process.env.CON_STRING);
+const sequelize = new Sequelize(process.env.CON_STRING, {
+    logging: console.log,
+});
 
 module.exports = sequelize;

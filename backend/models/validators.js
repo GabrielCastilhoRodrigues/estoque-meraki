@@ -5,6 +5,7 @@ const { Purchase } = require('./purchase');
 const { ItemPurchase } = require('./itemPurchase');
 const { Person } = require('./person');
 const { Sale } = require('./sale');
+const { Payment } = require('./payment');
 
 /**
  * Confere se o Tipo de Produto informado realmente existe.
@@ -132,6 +133,37 @@ async function sale_exist(id_sale) {
     return sale_exist;
 }
 
+async function sale_with_person_exist(id_sale, id_person_sale) {
+    const sale_exist = await Sale.findOne({
+        where: {
+            id: id_sale,
+            id_person: id_person_sale
+        }
+    });
+
+    return sale_exist;
+}
+
+async function payment_exist(id_payment) {
+    const payment_exist = await Payment.findOne({
+        where: {
+            id: id_payment
+        },
+        include: [
+            {
+                model: Person,
+                attributes: ['name']
+            },
+            {
+                model: Sale,
+                attributes: ['date', 'total_sale']
+            }
+        ]
+    });
+
+    return payment_exist;
+}
+
 module.exports = {
     product_type_exist,
     product_exist,
@@ -141,5 +173,7 @@ module.exports = {
     purchase_exist,
     item_purchase_exist,
     person_exist,
-    sale_exist
+    sale_exist,
+    payment_exist,
+    sale_with_person_exist
 }

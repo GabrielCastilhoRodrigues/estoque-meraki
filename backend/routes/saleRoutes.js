@@ -39,8 +39,6 @@ router.get('/:id', async (req, res) => {
  * Realiza a inserção de registro na tabela.
  */
 router.post('/', async (req, res) => {
-    const new_Sale = await Sale.create(req.body);
-
     const person = await Validators.person_exist(req.body.id_person);
 
     if (person === null) {
@@ -49,6 +47,8 @@ router.post('/', async (req, res) => {
             message: MESSAGES.PERSON_NOT_FOUND,
         });
     }
+
+    const new_Sale = await Sale.create(req.body);
 
     res.status(RETURN_CODES.CREATED).send(new_Sale);
 });
